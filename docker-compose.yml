@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  mongodb:
+    image: mongo:5.0
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongodb_data:/data/db
+    environment:
+      - MONGO_INITDB_DATABASE=task-management
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - '3000:3000'
+    depends_on:
+      - mongodb
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    environment:
+      - MONGODB_URI=mongodb://mongodb:27017/task-management
+      - PORT=3000
+      - NODE_ENV=development
+      - JWT_SECRET=your_jwt_secret_key_here
+      - JWT_EXPIRATION=1h
+      - JWT_REFRESH_SECRET=your_jwt_refresh_secret_key_here
+      - JWT_REFRESH_EXPIRATION=7d
+
+volumes:
+  mongodb_data:
