@@ -1,0 +1,66 @@
+task-management-api/
+├── src/
+│   ├── main.ts                  # Application entry point
+│   ├── app.module.ts            # Root module
+│   ├── config/                  # Configuration files
+│   │   ├── config.module.ts
+│   │   ├── config.service.ts
+│   │   ├── validation.schema.ts
+│   │   └── env.config.ts
+│   ├── common/                  # Shared components
+│   │   ├── decorators/          # Custom decorators
+│   │   ├── filters/             # Exception filters
+│   │   ├── guards/              # Route guards
+│   │   ├── interceptors/        # Interceptors
+│   │   ├── middleware/          # Custom middleware
+│   │   ├── pipes/               # Validation pipes
+│   │   └── dto/                 # Data transfer objects
+│   ├── auth/                    # Authentication module
+│   │   ├── auth.module.ts
+│   │   ├── auth.controller.ts
+│   │   ├── auth.service.ts
+│   │   ├── jwt.strategy.ts
+│   │   ├── jwt-refresh.strategy.ts
+│   │   ├── dto/
+│   │   │   ├── login.dto.ts
+│   │   │   └── register.dto.ts
+│   │   └── test/                # Auth module tests
+│   ├── users/                   # Users module
+│   │   ├── users.module.ts
+│   │   ├── users.controller.ts
+│   │   ├── users.service.ts
+│   │   ├── schemas/
+│   │   │   └── user.schema.ts
+│   │   ├── dto/
+│   │   │   ├── create-user.dto.ts
+│   │   │   └── update-user.dto.ts
+│   │   └── test/                # Users module tests
+│   └── tasks/                   # Tasks module
+│       ├── tasks.module.ts  
+│       ├── tasks.controller.ts
+│       ├── tasks.service.ts
+│       ├── schemas/
+│       │   └── task.schema.ts
+│       ├── dto/
+│       │   ├── create-task.dto.ts
+│       │   └── update-task.dto.ts
+│       └── test/                # Tasks module tests
+├── test/                        # End-to-end tests
+│   ├── app.e2e-spec.ts
+│   ├── auth.e2e-spec.ts
+│   ├── users.e2e-spec.ts
+│   └── tasks.e2e-spec.ts
+├── .env.example                 # Environment variables example
+├── .env                         # Environment variables (git-ignored)
+├── .eslintrc.js                 # ESLint configuration
+├── .prettierrc                  # Prettier configuration
+├── nest-cli.json                # NestJS CLI configuration
+├── package.json                 # Project dependencies and scripts
+├── tsconfig.json                # TypeScript configuration
+├── tsconfig.build.json          # TypeScript build configuration
+├── docker-compose.yml           # Docker Compose for local development
+├── Dockerfile                   # Docker configuration for production
+├── .github/workflows/          # GitHub Actions CI/CD workflows
+│   ├── ci.yml                   # Continuous Integration workflow
+│   └── cd.yml                   # Continuous Deployment workflow
+└── README.md                    # Project documentation
