@@ -97,9 +97,19 @@ describe('AuthController (e2e)', () => {
         })
         .expect(201)
         .expect((res) => {
-          expect(res.body.data.data).toHaveProperty('user');
-          expect(res.body.data.data).toHaveProperty('accessToken');
-          expect(res.body.data.data).toHaveProperty('refreshToken');
+          expect(
+            (res.body as { data: { data: { refreshToken: string } } }).data
+              .data,
+          ).toHaveProperty('user');
+          expect(
+            (res.body as { data: { data: { refreshToken: string } } }).data
+              .data,
+          ).toHaveProperty('accessToken');
+          //   expect(res.body.data.data).toHaveProperty('refreshToken');
+          expect(
+            (res.body as { data: { data: { refreshToken: string } } }).data
+              .data,
+          ).toHaveProperty('refreshToken');
         });
     });
 

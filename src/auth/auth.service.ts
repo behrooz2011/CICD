@@ -52,9 +52,10 @@ export class AuthService {
         ...tokens,
       };
     } catch (error) {
-      this.logger.error(`Login failed: ${error.message}`, error.stack);
-      if (error instanceof UnauthorizedException) {
-        throw error;
+      const err = error as Error; // Type assertion
+      this.logger.error(`Login failed: ${err.message}`, err.stack);
+      if (err instanceof UnauthorizedException) {
+        throw err;
       }
       throw new BadRequestException('Login failed');
     }
@@ -73,8 +74,9 @@ export class AuthService {
         ...tokens,
       };
     } catch (error) {
-      this.logger.error(`Registration failed: ${error.message}`, error.stack);
-      throw new BadRequestException(`Registration failed: ${error.message}`);
+      const err = error as Error; // Type assertion
+      this.logger.error(`Registration failed: ${err.message}`, err.stack);
+      throw new BadRequestException(`Registration failed: ${err.message}`);
     }
   }
 
@@ -96,7 +98,8 @@ export class AuthService {
         ...tokens,
       };
     } catch (error) {
-      this.logger.error(`Token refresh failed: ${error.message}`, error.stack);
+      const err = error as Error; // Type assertion
+      this.logger.error(`Token refresh failed: ${err.message}`, err.stack);
       throw new UnauthorizedException('Invalid refresh token');
     }
   }
@@ -133,6 +136,8 @@ export class AuthService {
         secret: this.configService.jwtRefreshSecret,
       });
     } catch (error) {
+      const err = error as Error;
+      this.logger.error(`Token verification failed: ${err.message}`, err.stack); // Log the error
       throw new UnauthorizedException('Invalid refresh token');
     }
   }

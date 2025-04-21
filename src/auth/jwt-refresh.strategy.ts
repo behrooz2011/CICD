@@ -23,7 +23,8 @@ export class JwtRefreshStrategy extends PassportStrategy(
   }
 
   async validate(req: Request, payload: JwtPayload) {
-    const refreshToken = req.body.refreshToken;
+    // const refreshToken = req.body.refreshToken;
+    const refreshToken = (req.body as { refreshToken: string }).refreshToken; // Type assertion
 
     if (!refreshToken) {
       throw new UnauthorizedException('Refresh token not found');
